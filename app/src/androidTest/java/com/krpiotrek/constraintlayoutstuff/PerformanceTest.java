@@ -1,20 +1,26 @@
 package com.krpiotrek.constraintlayoutstuff;
 
-import android.content.Context;
-import android.test.InstrumentationTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PerformanceTest extends InstrumentationTestCase {
+import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
-    @SmallTest
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+@RunWith(AndroidJUnit4.class)
+@SmallTest
+public class PerformanceTest {
+
+    @Test
     public void test() {
-        final long constraintLayoutTime = getLayoutTime(R.layout.item_new);
-        final long linearLayoutTime = getLayoutTime(R.layout.item_old_linear);
         final long relativeLayoutTime = getLayoutTime(R.layout.item_old_relative);
+        final long linearLayoutTime = getLayoutTime(R.layout.item_old_linear);
+        final long constraintLayoutTime = getLayoutTime(R.layout.item_new);
 
         Log.i("time", "constraint : " + constraintLayoutTime);
         Log.i("time", "linear : " + linearLayoutTime);
@@ -22,10 +28,9 @@ public class PerformanceTest extends InstrumentationTestCase {
     }
 
     private long getLayoutTime(int layoutRes) {
-        final Context targetContext = getInstrumentation().getTargetContext();
-        final LayoutInflater layoutInflater = LayoutInflater.from(targetContext);
+        final LayoutInflater layoutInflater = LayoutInflater.from(InstrumentationRegistry.getInstrumentation().getTargetContext());
 
-        final long startTime = System.currentTimeMillis();
+        final long startTime = System.nanoTime();
         for (int i = 0; i < 1000; i++) {
             final View view = layoutInflater.inflate(layoutRes, null);
             view.setLayoutParams(new ViewGroup.LayoutParams(0, 0));
@@ -36,6 +41,6 @@ public class PerformanceTest extends InstrumentationTestCase {
 
             view.layout(0, 0, measuredWidth, measuredHeight);
         }
-        return System.currentTimeMillis() - startTime;
+        return System.nanoTime() - startTime;
     }
 }

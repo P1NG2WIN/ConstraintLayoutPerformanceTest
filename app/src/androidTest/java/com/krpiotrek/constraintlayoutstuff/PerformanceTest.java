@@ -23,12 +23,12 @@ public class PerformanceTest {
         getLayoutTime(R.layout.activity_main);
 
         // Benchmark
-        final BMTime linearLayoutTime = getLayoutTime(R.layout.item_old_linear);
-        final BMTime relativeLayoutTime = getLayoutTime(R.layout.item_old_relative);
-        final BMTime constraintLayoutTime = getLayoutTime(R.layout.item_new);
+        final BMTime linearLayoutTime = getLayoutTime(R.layout.item_simple_linear);
+//        final BMTime relativeLayoutTime = getLayoutTime(R.layout.item_complex_relative);
+        final BMTime constraintLayoutTime = getLayoutTime(R.layout.item_simple_constraint);
 
         Log.i("time", "Linear    :\t" + linearLayoutTime);
-        Log.i("time", "Relative  :\t" + relativeLayoutTime);
+//        Log.i("time", "Relative  :\t" + relativeLayoutTime);
         Log.i("time", "Constraint:\t" + constraintLayoutTime);
     }
 

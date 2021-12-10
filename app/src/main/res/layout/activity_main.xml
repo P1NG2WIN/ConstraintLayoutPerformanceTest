@@ -4,15 +4,15 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/item_new"
+        layout="@layout/item_complex_constraint"
         />
 
     <include
-        layout="@layout/item_old_linear"
+        layout="@layout/item_complex_linear"
         />
 
     <include
-        layout="@layout/item_old_relative"
+        layout="@layout/item_complex_relative"
         />
 
 </LinearLayout>
